@@ -20,20 +20,7 @@ def select_name_and_series_subgenres_of_authors
 end
 
 def select_series_title_with_most_human_characters
-  # "SELECT series.title FROM series
-  #  WHERE id = 1;"
-  #  (SELECT series_id FROM(
-  #             SELECT series_id, species, COUNT(species) FROM characters
-  #  GROUP BY species ORDER BY COUNT(species) DESC LIMIT 1
-  #  ))"
-  # WHERE series.id IN (SELECT series_id FROM characters
-  # GROUP BY species ORDER BY COUNT(species) DESC LIMIT 1)
-  # "SELECT series.title
-  # FROM series
-  # JOIN characters ON series.id = characters.series_id
-  # # # WHERE characters.species = 'human' GROUP BY series.title"
-  # "SELECT series_id, species, COUNT(species) FROM characters"
-  # GROUP BY series_id ORDER BY COUNT(species) DESC
+
 "SELECT series.title FROM series
   WHERE id = (SELECT series_id FROM (
   select series_id, species,  COUNT(species) from characters WHERE species = 'human' GROUP BY series_id ORDER BY COUNT(species) DESC LIMIT 1));"
